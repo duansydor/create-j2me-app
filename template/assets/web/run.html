@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Run Canvas</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        // Clear IndexedDB
+        function clearIndexedDB() {
+            var db; 
+            var req = indexedDB.deleteDatabase('myDatabase');
+            req.onsuccess = function() {
+                console.log('IndexedDB cleared');
+            };
+            req.onerror = function() {
+                console.error('Error clearing IndexedDB');
+            };
+        }
+
+        // WebSocket example
+        var socket;
+        function initWebSocket() {
+            socket = new WebSocket('ws://your-websocket-url');
+            socket.onopen = function() {
+                console.log('WebSocket connection established');
+                // Hot-reload logic may go here
+            };
+            socket.onmessage = function(event) {
+                console.log('Message from server:', event.data);
+                // Handle incoming messages
+            };
+            socket.onerror = function(error) {
+                console.error('WebSocket error:', error);
+            };
+            socket.onclose = function(event) {
+                console.log('WebSocket connection closed:', event);
+                // Attempt to reconnect or handle closure
+            };
+        }
+
+        window.onload = function() {
+            clearIndexedDB(); 
+            initWebSocket();
+            var canvas = document.createElement('canvas');
+            canvas.width = 800;  // fixed width
+            canvas.height = 600; // fixed height
+            document.body.appendChild(canvas);
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
