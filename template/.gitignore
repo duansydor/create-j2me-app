@@ -1,0 +1,18 @@
+# J2ME
+
+# Built files
+bin/
+obj/
+
+# Intellij IDEA
+.idea/
+*.iml
+
+# Maven
+target/
+
+# Eclipse
+.settings/
+.classpath
+.classfile
+.project
